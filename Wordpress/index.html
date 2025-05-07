@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 10px;
+    }
+
+    .login-box {
+      background-color: #fff;
+      width: 100%;
+      max-width: 380px;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .login-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    label {
+      font-weight: 600;
+      color: #555;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #5a55d5;
+      box-shadow: 0 0 5px rgba(90, 85, 213, 0.4);
+      outline: none;
+    }
+
+    .show-password {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .show-label {
+      font-size: 14px;
+      color: #555;
+    }
+
+    
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 22px;
+      margin-right: 10px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #5a55d5;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+
+    button {
+      background-color: #5a55d5;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4267b2;
+      transform: translateY(-2px);
+    }
+
+    .bottom-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .bottom-text a {
+      color: #5a55d5;
+      text-decoration: none;
+    }
+
+    .bottom-text a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 480px) {
+      .login-box {
+        width: 90%;
+        padding: 30px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-box">
+    <h2 id="formTitle">Login to Continue</h2>
+    <form id="authForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email" />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required placeholder="Enter your password" />
+
+      <div class="show-password">
+        <label class="switch">
+          <input type="checkbox" id="showPassword" />
+          <span class="slider round"></span>
+        </label>
+        <span class="show-label">Show Password</span>
+      </div>
+
+      <button type="button" id="submitBtn" onclick="login()">Login</button>
+    </form>
+
+    <div class="bottom-text">
+      <span id="toggleText">Don't have an account?</span>
+      <a href="#" id="toggleLink">Sign up</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var isLogin = true;
+
+  document.getElementById("toggleLink").onclick = function () {
+    var formTitle = document.getElementById("formTitle");
+    var submitBtn = document.getElementById("submitBtn");
+    var toggleText = document.getElementById("toggleText");
+    var toggleLink = document.getElementById("toggleLink");
+
+    if (isLogin) {
+      formTitle.innerHTML = "Create an Account";
+      submitBtn.innerHTML = "Sign Up";
+      toggleText.innerHTML = "Already have an account?";
+      toggleLink.innerHTML = "Login";
+    } else {
+      formTitle.innerHTML = "Login to Continue";
+      submitBtn.innerHTML = "Login";
+      toggleText.innerHTML = "Don't have an account?";
+      toggleLink.innerHTML = "Sign up";
+    }
+    isLogin = !isLogin;
+    return false;
+  };
+
+  
+  document.getElementById("showPassword").addEventListener("change", function () {
+    document.getElementById("password").type = this.checked ? "text" : "password";
+  });
+
+  
+  function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (email && password) {
+      console.log("Login success for:", email);
+      window.location.href = "select-category.html";
+    } else {
+      alert("Please enter both email and password.");
+    }
+  }
+</script>
+
+</body>
+</html>

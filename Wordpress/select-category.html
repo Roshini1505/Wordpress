@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select a Category</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to right, #2e2e2e, #1a1a1a); 
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+
+    .main-box {
+      max-width: 1050px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.05); 
+      backdrop-filter: blur(8px);
+      padding: 60px 45px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      text-align: center;
+      color: #f5f5f5;
+      margin-bottom: 50px;
+      letter-spacing: 1.5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 30px;
+    }
+
+    .category-button {
+      background: linear-gradient(to bottom, #4b4b4b, #2c2c2c);
+      color: #f0f0f0;
+      border: 1px solid #555;
+      padding: 22px 16px;
+      border-radius: 14px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .category-button:hover {
+      background: linear-gradient(to top, #5e5e5e, #3a3a3a);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(255, 215, 0, 0.2);
+      color: #ffd700;
+      border-color: #ffd700;
+    }
+
+    .category-button::before {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+
+    @media screen and (max-width: 600px) {
+      .main-box {
+        padding: 30px 20px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="main-box">
+  <h2>Select Your Own Website Category</h2>
+  <div class="grid">
+    <button class="category-button portfolio" onclick="selectCategory('portfolio')">Portfolio</button>
+    <button class="category-button blog" onclick="selectCategory('blog')">Blog</button>
+    <button class="category-button education" onclick="selectCategory('education')">Education</button>
+    <button class="category-button medical" onclick="selectCategory('medical')">Medical</button>
+    <button class="category-button it" onclick="selectCategory('it')">IT</button>
+    <button class="category-button agriculture" onclick="selectCategory('agriculture')">Agriculture</button>
+    <button class="category-button hostel" onclick="selectCategory('hostel')">Hostel</button>
+    <button class="category-button transportation" onclick="selectCategory('transportation')">Transportation</button>
+    <button class="category-button banking" onclick="selectCategory('banking')">Banking</button>
+    <button class="category-button retail" onclick="selectCategory('retail')">Retail</button>
+    <button class="category-button business" onclick="selectCategory('business')">Business</button>
+    <button class="category-button tourism" onclick="selectCategory('tourism')">Tourism</button>
+  </div>
+</div>
+
+<script>
+  function selectCategory(category) {
+    console.log("Selected:", category);
+    window.location.href = "builder.html?category=" + encodeURIComponent(category);
+  }
+</script>
+
+</body>
+</html>
